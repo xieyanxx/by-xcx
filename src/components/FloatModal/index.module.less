@@ -1,0 +1,69 @@
+.wrap {
+  width: 100%;
+
+  :global {
+    .at-float-layout__container {
+      max-height: 420px;
+      min-height: 323px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .at-float-layout .layout-body {
+      // max-height: 60%;
+      // min-height: 500px !important;
+      box-sizing: border-box;
+      border-radius: 16px 16px 0 0;
+      font-size: 14px !important;
+    }
+
+  }
+  .calendar_wrap{
+    font-size: 12px;
+    :global{
+      .at-calendar__controller{
+        margin-bottom: 10px;
+      }
+      .controller__arrow {
+        flex: 0 0 24px;
+        height: 24px;
+        border-radius: 3px;
+        background-size: 45%;
+      }
+      .controller__info{
+        font-size: 20px;
+      }
+      .header__flex{
+        height: 40px;
+      }
+      .header__flex-item{
+        font-size: 16px;
+      }
+      .at-calendar__list.flex .flex__item-container{
+        height: 40px;
+        width: 40px
+      }
+      .at-calendar__list.flex .flex__item{
+        font-size: 16px;
+      }
+      .at-calendar__list.flex .flex__item--blur{
+        color: #d1d1d1;
+      }
+      .at-calendar__list.flex{
+        color: #333333;
+      }
+      .header__flex{
+        height: 40px;
+        
+      }
+      .at-calendar__list.flex .flex__item--selected{
+        background-color: #70CB34;
+      }
+      .at-calendar__list.flex .flex__item--today{
+        color: #70CB34;
+      }
+      .at-calendar__list.flex .flex__item--selected{
+        color: #ffffff !important;
+      }
+    }
+  }
+}

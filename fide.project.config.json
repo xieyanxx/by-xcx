@@ -1,0 +1,37 @@
+{
+  "projectname": "百优",
+  "description": "百优优选",
+  "miniprogramRoot": "dist/",
+  "miniprogramRootProd": "dist-prod/",
+  "appid": "wx2e769a307a0951ae",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "es6": true,
+    "minify": false,
+    "minifyWXSS": false,
+    "autoPrefixWXSS": false,
+    "obfuscate": false,
+    "urlCheck": true,
+    "enhance": false,
+    "compileHotReLoad": false,
+    "postcss": false,
+    "minified": false,
+    "useCompilerPlugins": [
+      "typescript"
+    ],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "skipCompileWatch": true
+  },
+  "buildOption": {
+    "compilerSource": "wx"
+  },
+  "compileType": "miniprogram",
+  "projectType": 0
+}

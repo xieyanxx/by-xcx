@@ -1,0 +1,130 @@
+.wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #F5F5F5;
+  box-sizing: border-box;
+  padding: 0 0 20px;
+
+  .top_wrap {
+    height: 48px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+
+    .time_wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #F5F5F5;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .time {
+        font-size: 14px;
+        color: #666666;
+      }
+    }
+
+    .export {
+      font-size: 16px;
+      color: #70CB34;
+    }
+
+    .picker_wrap {}
+
+  }
+
+  .conten_wrap {
+    margin-top: 12px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+
+    .content {
+      padding: 12px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      width: 100%;
+      box-sizing: border-box;
+
+      .amount {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        position: relative;
+
+        .item {
+          flex: 1;
+          font-size: 14px;
+          color: #333333;
+        }
+
+        &::after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 1px;
+          background: rgba(0, 0, 0, 0.05);
+          left: 0;
+          bottom: -10px;
+        }
+      }
+
+      .list_wrap {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .list_item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+          min-height: 55px;
+          .item_r {
+            .type {
+              font-size: 14px;
+              color: #333333;
+            }
+
+            .time {
+              margin-top: 4px;
+              font-size: 12px;
+              color: #999999;
+            }
+          }
+
+          .num {
+            font-size: 18px;
+            color: #333333;
+            font-weight: bold;
+          }
+
+          .add {
+            color: #FF604E;
+
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.picker-action {
+  color: #666666 !important;
+}
+
+.picker-action:last-child {
+  border-radius: 0 16px 0 0;
+}
