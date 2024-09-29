@@ -25,7 +25,7 @@ export default function Index() {
   const [orderList, setOrderList] = useState<OrderType>([]);
   const [isOpenTime, setIsOpenTime] = useState<boolean>(false);
   const [totalPage, setTotalPage] = useState<number>(0);
-  const [isRefresh, setIsRefresh] = useState<boolean>(false)
+  const [isRefresh, setIsRefresh] = useState<boolean>(false);
   const pageRef = useRef(0);
 
   useDidShow(() => {
@@ -34,6 +34,7 @@ export default function Index() {
 
   /** 刷新 */
   const refresh = () => {
+    pageRef.current = 0
     setIsRefresh(true)
     setTotalPage(0);
     getOrderList({

@@ -12,10 +12,19 @@ enum NetworkStatusCode {
   ServerErrorCode = 500,
   /** @name 成功 */
   SuccessCode = 200,
+  /** @name 余额不足 */
+  ErrorCode=400,
 }
 
 type NetworkException555 = {
   statusCode: NetworkStatusCode.BizErrorCode;
+  data: {
+    code: number;
+    message: string;
+  };
+};
+type NetworkException400 = {
+  statusCode: NetworkStatusCode.ErrorCode;
   data: {
     code: number;
     message: string;
@@ -116,6 +125,9 @@ function request<T>(method: NetworkMethod, url: string, params = {}, data = {}, 
         console.log('req data', data);
         console.log('res', res);
         if (res.statusCode === NetworkStatusCode.SuccessCode) {
+          if(res.data.code){
+           return Promise.reject<NetworkException400>({ statusCode: NetworkStatusCode.ErrorCode, data: { code: res.data.code, message: '余额不足,请联系管理员充值！' } })
+          }
           return Promise.resolve(res.data);
         } else if (res.statusCode === NetworkStatusCode.NoAuthCode) {
           clearStorageSync()

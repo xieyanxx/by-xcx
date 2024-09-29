@@ -1,7 +1,7 @@
 import { getStorageSync } from '@tarojs/taro';
 import network from '../core/network';
 
-export const RefundType:any = {
+export const RefundType: any = {
   0: '下单',
   1: '退款',
   2: '充值'
@@ -87,7 +87,8 @@ const Server = {
         }];
         item.checked = false;
         item.isOpened = false;
-        item.productPrice = item.productPrice / 100
+        item.productPrice = item.productPrice / 100;
+        item.disabled = item.online ? false : true;
         return item
       })
       return res

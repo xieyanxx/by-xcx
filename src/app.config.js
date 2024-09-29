@@ -9,7 +9,7 @@ export default defineAppConfig({
   subPackages: [
     {
       root: 'otherpage',
-      pages: ['login/index', "bill/index", 'orderRecord/index','refundRecord/index']
+      pages: ['login/index', "bill/index", 'orderRecord/index','refundRecord/index','setting/index']
     }
   ],
   lazyCodeLoading: 'requiredComponents',
@@ -29,10 +29,10 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black',
     navigationBarTitleText: '',
     navigationStyle: 'default',
-    backgroundColor: '#000000',
+    backgroundColor: '#F5F5F5',
     backgroundTextStyle: 'dark',
-    backgroundColorTop: '#000000',
-    backgroundColorBottom: '#000000',
+    backgroundColorTop: '#F5F5F5',
+    backgroundColorBottom: '#F5F5F5',
     initialRenderingCache: 'static',
 
   }

@@ -25,30 +25,50 @@
     .head_wrap {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      position: relative;
       gap: 8px;
 
-      .head_img {
-        height: 72px;
-        width: 72px;
-        object-fit: contain;
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .head_img {
+          height: 72px;
+          width: 72px;
+          object-fit: contain;
+        }
+
+        .user_info {
+          font-size: 16px;
+          color: #333333;
+          font-weight: bold;
+
+          .login_text {
+            font-size: 24px;
+
+          }
+
+          .phone {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666666;
+            font-weight: normal;
+          }
+        }
+
       }
 
-      .user_info {
-        font-size: 16px;
-        color: #333333;
-        font-weight: bold;
-
-        .login_text {
-          font-size: 24px;
-
-        }
-
-        .phone {
-          margin-top: 8px;
-          font-size: 14px;
-          color: #666666;
-          font-weight: normal;
-        }
+      .login_out {
+        height: 32px;
+        padding: 0 12px;
+        background: #FFFFFF;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        color: #70CB34;
+        font-size: 14px;
       }
     }
 
@@ -89,16 +109,19 @@
       padding: 16px;
       box-sizing: border-box;
       width: 100%;
-      .title{
+
+      .title {
         font-size: 16px;
         color: #000000;
         font-weight: bold;
         margin-bottom: 12px;
       }
+
       .item_wrap {
         display: flex;
         align-items: center;
         gap: 6px;
+
         .item {
           display: flex;
           flex-direction: column;

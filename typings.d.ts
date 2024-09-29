@@ -11,6 +11,7 @@ declare module '*.styl';
 declare const LOCAL_DEBUG: boolean;
 declare const DEBUG_ENV: 'TEST' | 'DEV' | 'BETA';
 declare const isH5: boolean;
+declare module 'file-saver'
 
 // declare const process: {
 //   env: {

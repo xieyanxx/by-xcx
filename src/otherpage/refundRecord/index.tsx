@@ -35,6 +35,7 @@ export default function Index() {
 
   /** 刷新 */
   const refresh = () => {
+    pageRef.current = 0
     setIsRefresh(true)
     setTotalPage(0);
     getRefundList({
@@ -116,7 +117,8 @@ export default function Index() {
                 {item.items.length > 3 && <View className={styles.open} onClick={() => { setIsShow(!isShow) }}>{isShow && currentId == item.id ? '收起' : '展开'}</View>}
                 <View className={styles.line} />
                 <View className={styles.time}>下单时间：{formatTime(item.createTime)}</View>
-                <View className={styles.price}><View className={styles.orderId}>订单编号：{item.orderNo}</View><View className={styles.unit}> <Text className={styles.text}>￥</Text>{handleAmount(item.orderRefundAmount)}</View></View>
+                <View className={styles.price}>
+                  <View className={styles.orderId}>订单编号：{item.refundNo}</View><View className={styles.unit}> <Text className={styles.text}>￥</Text>{handleAmount(item.refundAmount)}</View></View>
               </View>
             </View>
           )}

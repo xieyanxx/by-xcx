@@ -73,7 +73,7 @@ export default function Order(props: { type: number }) {
   }
 
   return (
-    <>
+    <View>
       <View className={styles.top_wrap}>
         <View className={styles.time_wrap} onClick={() => setIsOpenTime(true)}>
           <Text className={styles.time} >{`${selectTime.start} - ${selectTime.end}`} </Text><Image className={styles.icon} src={require('@/static/down.png')}></Image>
@@ -104,6 +104,6 @@ export default function Order(props: { type: number }) {
       </View>
 
       <FloatModal isOpened={isOpenTime} close={handleClose} getOrderList={(val: Time) => getOrderList(val)} setSelectTime={(val: { end: string, start: string }) => setSelectTime(val)} selectTime={selectTime}></FloatModal>
-    </>
+    </View>
   )
 }

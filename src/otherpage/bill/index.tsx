@@ -8,9 +8,9 @@ import cx from 'classnames'
 import Server, { RefundType } from '@/helper/http/server';
 import { BillType } from '@/helper/http/server/type';
 import { formatTime, handleAmount, notice } from '@/helper/utils';
+import ExportExcel from '@/components/ExportExcel';
 
 export default function Index() {
-  const [loading, setLoading] = useState<boolean>(false)
   const [selectMonth, setSelectMonth] = useState<string>(dayjs().startOf('month').format('YYYY-MM'))
   const [billList, setBillList] = useState<BillType>([])
   const [amount,setAmount]=useState<any>()
@@ -43,6 +43,7 @@ export default function Index() {
         });
   }, [selectMonth])
 
+  /** 获取所选时间内账单总计 */
   const getBillAll=useCallback((selectData: string)=>{
     const params = {
       start: dayjs(selectData).startOf('month').valueOf(),
@@ -50,7 +51,6 @@ export default function Index() {
     }
       Server.getBillAll(params)
         .then((res) => {
-          console.log(res,'====>')
           setAmount(res)
         })
   },[selectMonth])
@@ -63,7 +63,8 @@ export default function Index() {
             <Text className={styles.time}>{selectMonth} </Text><Image className={styles.icon} src={require('@/static/down.png')}></Image>
           </View>
         </Picker>
-        <Text className={styles.export}>导出明细</Text>
+        <ExportExcel exportData={billList}></ExportExcel>
+        {/* <Text className={styles.export}>导出明细</Text> */}
       </View>
       <View className={styles.conten_wrap}>
         <View className={styles.content}>

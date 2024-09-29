@@ -1,7 +1,7 @@
 import Server from '@/helper/http/server';
 import { notice } from '@/helper/utils';
 import { View, Text, Image, Form, Input, Button, Checkbox } from '@tarojs/components'
-import { setStorageSync, useLoad, switchTab } from '@tarojs/taro'
+import { setStorage, useLoad, switchTab } from '@tarojs/taro'
 import { useState } from 'react';
 import styles from './index.module.less';
 
@@ -22,8 +22,10 @@ export default function Index() {
     setLoading(true)
     Server.login({ username, password }).then(res => {
       setLoading(false)
-      setStorageSync('token', `${res.tokenType} ${res.accessToken}`)
-      switchTab({ url: '/pages/home/index' })
+      setStorage({ key: 'token', data: `${res.tokenType} ${res.accessToken}` }).then(() => {
+        switchTab({ url: '/pages/home/index' })
+      })
+
     })
   }
 

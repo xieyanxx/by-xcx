@@ -18,7 +18,9 @@ export type userInfoType = {
   username: string,
   phone: string,
   balance: number,
-  debtBalance: number
+  debtBalance: number,
+  debt:number,
+
 }
 
 export type OrderType = {
@@ -62,15 +64,14 @@ export type BillType = {
 
 export type RefundType = {
   id: number,
-  orderNo: number,
+  orderNo: string,
+  refundNo:string,
   userId: number,
-  price: number,
   phone: string,
   username: string,
-  orderState: number,
-  orderRefundStatus: number,
-  orderRefundAmount: number,
+  refundStatus: number,
   createTime: number,
+  refundAmount:number,
   items: {
     product: {
       productId: number

@@ -103,7 +103,6 @@
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
-
       .list_item {
         max-width: 164px;
         background: #FFFFFF;
@@ -112,6 +111,7 @@
         .img {
           width: 164px;
           height: 164px;
+          border-radius: 12px 12px 0 0;
         }
 
         .name {
@@ -144,11 +144,13 @@
 
           .add_wrap {
             position: relative;
+
             .add_img {
               width: 20px;
               height: 20px;
             }
-            .num{
+
+            .num {
               position: absolute;
               right: 0;
               top: -5px;
@@ -165,6 +167,22 @@
           }
 
         }
+      }
+
+      
+    }
+    .empty_wrap {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #333333;
+      width: 100vw;
+      .empty {
+        width: 240px;
+        height: 240px;
       }
     }
   }

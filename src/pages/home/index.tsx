@@ -2,7 +2,7 @@ import Server from '@/helper/http/server';
 import { CategoryType, GoodsType } from '@/helper/http/server/type';
 import { handleAmount, notice } from '@/helper/utils';
 import { View, Text, Image, Input, } from '@tarojs/components'
-import { useDidShow, useLoad, showLoading, hideLoading } from '@tarojs/taro'
+import { useDidShow, useLoad, showLoading, hideLoading, getStorageSync,navigateTo } from '@tarojs/taro'
 import { debounce } from 'lodash';
 
 
@@ -33,7 +33,7 @@ export default function Index() {
   //获取商品列表
   const getProduct = useCallback((val?: any) => {
     showLoading({ title: "加载中" })
-    Server.getGoodsList(val)
+    Server.getGoodsList({ productName: val })
       .then((res) => {
         setGoodsList(res);
         hideLoading()
@@ -46,12 +46,17 @@ export default function Index() {
 
 
   const handleChange = (val: GoodsType) => {
-    let num = ++val.productCount;
-    const data = {
-      productId: val.productId,
-      count: num
+    if(getStorageSync("token")){
+      let num = ++val.productCount;
+      const data = {
+        productId: val.productId,
+        count: num
+      }
+      delayedAdd(data)
+    }else{
+      navigateTo({ url: "/otherpage/login/index" });
     }
-    delayedAdd(data)
+    
   }
 
   const delayedAdd = debounce((val: { productId: number, count: number }) => {
@@ -59,6 +64,16 @@ export default function Index() {
       getProduct()
     })
   }, 300);
+
+  const handleSearch = () => {
+    getProduct(productName)
+  }
+
+  const getInputValue = ({ detail }: any) => {
+    const { value } = detail
+    setProductName(value)
+
+  }
 
 
   return (
@@ -69,8 +84,8 @@ export default function Index() {
       <View className={styles.content}>
         <View className={styles.search_wrap}>
           <Image className={styles.icon} src={require('@/static/icon1.png')} />
-          <Input className={styles.input} value={productName} placeholder='搜索商品' />
-          <View className={styles.text}>搜索</View>
+          <Input className={styles.input} value={productName} onInput={getInputValue} placeholder='搜索商品' />
+          <View className={styles.text} onClick={handleSearch}>搜索</View>
         </View>
         <View className={styles.type_wrap}>
           {categoryList.map(item =>
@@ -79,72 +94,25 @@ export default function Index() {
               <Text>{item.name}</Text>
             </View>
           )}
-          <View className={styles.item}>
-            <Image src={require('@/static/type.png')} className={styles.item_img} />
-            <Text>川渝火锅</Text>
-          </View>
-          <View className={styles.item}>
-            <Image src={require('@/static/type.png')} className={styles.item_img} />
-            <Text>川渝火锅</Text>
-          </View>
-          <View className={styles.item}>
-            <Image src={require('@/static/type.png')} className={styles.item_img} />
-            <Text>川渝火锅</Text>
-          </View>
-          <View className={styles.item}>
-            <Image src={require('@/static/type.png')} className={styles.item_img} />
-            <Text>川渝火锅</Text>
-          </View>
-          <View className={styles.item}>
-            <Image src={require('@/static/type.png')} className={styles.item_img} />
-            <Text>川渝火锅</Text>
-          </View>
-          <View className={styles.item}>
-            <Image src={require('@/static/type.png')} className={styles.item_img} />
-            <Text>川渝火锅</Text>
-          </View>
         </View>
-        <View className={styles.list_wrap}>
+        {goodsList.length ? <View className={styles.list_wrap}>
           {goodsList.map(item =>
             <View className={styles.list_item} key={item.productId}>
               <Image className={styles.img} src={item.productPic}></Image>
               <View className={styles.name}>{item.productName}</View>
               <View className={styles.price_wrap}>
-                <Text className={styles.price_text}><Text className={styles.unit}>￥</Text>{handleAmount(item.productPrice)}</Text>
+                <Text className={styles.price_text}><Text className={styles.unit}>￥</Text>{handleAmount(item.productPrice)}<Text className={styles.unit}>/{item.productUnit}</Text></Text>
                 <View className={styles.add_wrap} onClick={() => handleChange(item)}>
                   <Image className={styles.add_img} src={require('@/static/add.png')} />
                   {item.productCount > 0 && <View className={styles.num} >{item.productCount}</View>}
-
                 </View>
-
               </View>
             </View>
           )}
-          {/* <View className={styles.list_item}>
-            <Image className={styles.img} src={require('@/static/goods.png')}></Image>
-            <View className={styles.name}>毛肚黄牛大叶2斤/袋</View>
-            <View className={styles.price_wrap}>
-              <Text className={styles.price_text}><Text className={styles.unit}>￥</Text>20</Text>
-              <Image className={styles.add_img} src={require('@/static/add.png')} />
-            </View>
-          </View>
-          <View className={styles.list_item}>
-            <Image className={styles.img} src={require('@/static/goods.png')}></Image>
-            <View className={styles.name}>毛肚黄牛大叶2斤/袋</View>
-            <View className={styles.price_wrap}>
-              <Text className={styles.price_text}><Text className={styles.unit}>￥</Text>20</Text>
-              <Image className={styles.add_img} src={require('@/static/add.png')} />
-            </View>
-          </View>
-          <View className={styles.list_item}>
-            <Image className={styles.img} src={require('@/static/goods.png')}></Image>
-            <View className={styles.name}>毛肚黄牛大叶2斤/袋</View>
-            <View className={styles.price_wrap}>
-              <Text className={styles.price_text}><Text className={styles.unit}>￥</Text>20</Text>
-              <Image className={styles.add_img} src={require('@/static/add.png')} />
-            </View>
-          </View> */}
-        </View>
+        </View> : <View className={styles.empty_wrap}>
+            <Image className={styles.empty} src={require("@/static/empty.png")}></Image>
+            <View> 暂无商品～</View>
+          </View>}
       </View>
 
     </View>
