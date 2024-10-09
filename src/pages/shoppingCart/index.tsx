@@ -7,7 +7,6 @@ import { AtInputNumber, AtList, AtSwipeAction } from 'taro-ui';
 import styles from './index.module.less';
 import Modal from '@/components/Modal';
 import Server from '@/helper/http/server';
-import { debounce } from 'lodash';
 import Empty from '@/components/Empty';
 import { Decimal } from 'decimal.js';
 
@@ -121,7 +120,7 @@ export default function Index() {
   }
   const delayedAdd = (val: { productId: number, count: number }) => {
     Server.updateCarList(val).then(() => {
-      //选择效果后端没保存由前端控制
+      //选中效果后端没保存由前端控制
       carList.map((item: any) => {
         if (item.productId == val.productId) {
           item.productCount = val.count

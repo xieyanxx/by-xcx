@@ -15,10 +15,10 @@ export default function Index() {
       notice('请输入用户名及密码')
       return
     }
-    if (!select) {
-      notice('请勾选用户协议')
-      return
-    }
+    // if (!select) {
+    //   notice('请勾选用户协议')
+    //   return
+    // }
     setLoading(true)
     Server.login({ username, password }).then(res => {
       setLoading(false)
@@ -39,7 +39,7 @@ export default function Index() {
         <Button loading={loading} form-type='submit' className={styles.btn_wrap}>登录</Button>
 
       </Form>
-      <Checkbox className={styles.checked_wrap} value='选中' onChange={() => setSelect(!select)} checked={select}><View className={styles.text_tip}>我已阅读并同意百优优选《用户注册协议》与《隐私协议》</View></Checkbox>
+      
     </View>
   )
 }
