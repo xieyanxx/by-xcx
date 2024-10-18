@@ -34,7 +34,7 @@ export default function Index() {
       <Image className={styles.logo} src={require('@/static/logo.png')} />
       <Text className={styles.text}>账号登录</Text>
       <Form onSubmit={formSubmit} className={styles.form_wrap}>
-        <Input type='text' name='username' className={styles.input_wrap} placeholder='请输入用户名' focus />
+        <Input type='text' name='username' className={styles.input_wrap} placeholder='请输入账号' focus />
         <Input password name='password' className={styles.input_wrap} placeholder='请输入密码' />
         <Button loading={loading} form-type='submit' className={styles.btn_wrap}>登录</Button>
 

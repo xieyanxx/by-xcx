@@ -21,7 +21,8 @@ export default function Index() {
 
 
   useDidShow(() => {
-    setIsLogin(getStorageSync("token") ? true : false)
+    setIsLogin(getStorageSync("token") ? true : false);
+    getUserInfo()
   });
   useEffect(() => {
     if (isLogin) {
@@ -31,6 +32,9 @@ export default function Index() {
 
   /** 获取用户信息 */
   const getUserInfo = () => {
+    if (!isLogin) {
+      return
+    }
     showLoading({ title: "加载中" });
     Server.getUserInfo()
       .then((res) => {

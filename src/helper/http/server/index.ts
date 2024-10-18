@@ -34,14 +34,15 @@ const Server = {
    */
 
   getGoodsList: (data: any) => {
-    return network.post('/mall/xcx/public/product/list', {}, data).then(res => {
+    return network.post('/mall/xcx/public/product/list-by-page', {}, data).then(res => {
       if (getStorageSync('token')) {
         return network.post('/mall/xcx/shopping/cart/list', {}).then(data => {
-          res = res.map((item: any) => {
+          res.content = res.content.map((item: any) => {
             const carData = data.find((i: any) => i.productId === item.productId)
             item.productCount = carData?.productCount || 0
             return item
           })
+
           return res
         })
       }

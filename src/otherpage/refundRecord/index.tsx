@@ -42,7 +42,6 @@ export default function Index() {
       end: dayjs().format('YYYY-MM-DD'),
       start: dayjs().add(-7, 'd').startOf('day').format('YYYY-MM-DD')
     })
-
   }
 
   /** 获取退款列表 */

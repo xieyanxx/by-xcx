@@ -53,6 +53,7 @@ export default function Index() {
       pageSize: 10,
     }
     Server.getOrderList(params).then((res) => {
+      console.log(res.content)
       setOrderList(res.content)
       setCurrentId(res.content[0]?.id)
       setTotalPage(res.totalPages)
@@ -112,7 +113,7 @@ export default function Index() {
                     </View>
                   </View>)}
                 </View>
-                {item.items.length > 3 && <View className={styles.open} onClick={() => { setIsShow(!isShow) }}>{isShow && currentId == item.id ? '收起' : '展开'}</View>}
+                {item.items.length > 3 && <View className={styles.open} onClick={() => { setIsShow(!isShow); setCurrentId(item.id) }}>{isShow && currentId == item.id ? '收起' : '展开'}</View>}
                 <View className={styles.line} />
                 <View className={styles.time}>下单时间：{formatTime(item.createTime)}</View>
                 <View className={styles.price}><View className={styles.orderId}>订单编号：{item.orderNo}</View><View className={styles.unit}> <Text className={styles.text}>￥</Text>{handleAmount(item.price)}</View></View>

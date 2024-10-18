@@ -192,7 +192,7 @@ export default function Index() {
                           className={styles.num_wrap}
                           type={'number'}
                           min={0}
-                          max={100}
+                          max={300}
                           step={1}
                           width={48}
                           value={item.productCount}
